@@ -4,7 +4,9 @@ Certainly! Here's the updated user guide with the table included:
 
 ## Introduction to Hangul
 
-Hangul, the native alphabet of the Korean writing system, is renowned for its logical and systematic design. Created during the 15th century under the rule of King Sejong the Great, Hangul consists of consonants, vowels, double consonants, and double vowels that form syllabic blocks. Understanding the structure of Hangul is essential for navigating the Hangul Learning App.
+![640px-Hunminjeongeumhaerye_(cropped)](https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/ad1a0595-118f-450b-bd3f-9a740b875b5c)
+
+Hangul, the native alphabet of the Korean writing system, is renowned for its logical and systematic design. Created during the 15th century under the rule of King Sejong the Great, Hangul consists of consonants, vowels, double consonants, and double vowels that form syllabic blocks.
 
 ### Characters and Reading
 
