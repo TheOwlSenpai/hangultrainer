@@ -1,12 +1,52 @@
-/* styles.css */
+:root {
+    --main-bg-color: #222;
+    --text-color: #fff;
+    --secondary-bg-color: #333;
+    --radio-border-color: #ccc;
+    --checked-radio-bg-color: #ccf;
+    --button-bg-color: #555;
+    --button-hover-bg-color: #777;
+}
 
 body {
     align-content: center;
-    background-color: #222;
-    color: #fff;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
+}
+
+body.light {
+    --main-bg-color: #fff;
+    --text-color: #222;
+    --secondary-bg-color: #eee;
+    --radio-border-color: #555;
+    --checked-radio-bg-color: #33f;
+    --button-bg-color: #ccc;
+    --button-hover-bg-color: #aaa;
+}
+
+.title-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-theme h1 {
+    margin: 0;
+}
+
+#theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.moon-sun {
+    margin-right: 10px; /* Adjust as needed */
 }
 
 div.body {
@@ -16,7 +56,7 @@ div.body {
     max-width: 700px;
     margin-top: 5%;
     margin-left: 10%;
-    background-color: #333;
+    background-color: var(--secondary-bg-color);
     border-radius: 40px;
     padding: 4%;
     padding-top: 40px;
@@ -54,7 +94,7 @@ div.radio label input {
 }
 
 div.radio label span {
-    border: 1px solid #ccc;
+    border: 1px solid var(--radio-border-color);
     width: 30px;
     height: 30px;
     position: absolute;
@@ -66,8 +106,8 @@ div.radio label span {
 }
 
 div.radio input:checked + span {
-    background: #ccf;
-    border-color: #ccf;
+    background: var(--checked-radio-bg-color);
+    border-color: var(--checked-radio-bg-color);
 }
 
 label[for="length_slider"] {
@@ -84,8 +124,8 @@ input[type="range"] {
 }
 
 button {
-    background-color: #555;
-    color: #fff;
+    background-color: var(--button-bg-color);
+    color: #888;
     padding: 10px 20px;
     font-size: 1em;
     border: none;
@@ -94,7 +134,7 @@ button {
 }
 
 button:hover {
-    background-color: #777;
+    background-color: var(--button-hover-bg-color);
 }
 
 #wordDisplay {

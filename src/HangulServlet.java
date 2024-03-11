@@ -5,8 +5,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class HangulServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int length = Integer.parseInt(request.getParameter("length_slider"));
         int difficulty = Integer.parseInt(request.getParameter("difficulty"));
@@ -39,6 +42,9 @@ public class HangulServlet extends HttpServlet {
             out.print(jsonResponse);
             out.flush();
 
+            // Log the generated word to the CSV file
+            logToCSV(length, difficulty);
+
         } catch (Exception e) {
             e.printStackTrace();
             // Handle the exception by sending an error JSON response if needed
@@ -50,5 +56,31 @@ public class HangulServlet extends HttpServlet {
             out.flush();
         }
     }
+
+    private void logToCSV(int length, int difficulty) {
+        try {
+            // Get the current timestamp
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String timestamp = now.format(formatter);
+
+            // Append the log entry to the CSV file
+            String logEntry = length + "," + difficulty + "," + timestamp + "\n";
+            String csvFilePath = getServletContext().getRealPath("/") + "WEB-INF/classes/word_logs.csv";
+
+            try (FileWriter fileWriter = new FileWriter(csvFilePath, true);
+                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                 PrintWriter writer = new PrintWriter(bufferedWriter)) {
+
+                writer.write(logEntry);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle the exception, you may want to log it or send an error response
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception, you may want to log it or send an error response
+        }
+    }
 }
-//

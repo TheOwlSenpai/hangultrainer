@@ -10,7 +10,24 @@
 
 <body>
     <div class="body">
-        <h1>Hangul Learning App</h1>
+        <div class="title-theme">
+            <h1>Hangul Learning App</h1>
+            <button class="moon-sun" id="theme-toggle-btn" onclick="toggleTheme()">
+                <i class="sun-icon">Light</i>
+            </button>
+        </div>
+        
+        <script>
+            function toggleTheme() {
+                const body = document.body;
+                const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        
+                body.classList.toggle('light');
+        
+                const isLightTheme = body.classList.contains('light');
+                themeToggleBtn.innerHTML = isLightTheme ? '<i class="moon-icon" color="#333">Dark</i>' : '<i class="sun-icon">Light</i>';
+            }
+        </script>        
 
         <div class="fieldset">
             <div class="legend">Settings</div>
@@ -34,6 +51,7 @@
             <label for="length_slider">Choose Word Length (1-10):</label>
             <input type="range" min="1" max="10" value="5" id="length_slider">
             <button onclick="generateWord()">Generate Word</button>
+            
         </div>
     </div>
     <div id="wordDisplay" style="display:none;" class="body">
