@@ -62,6 +62,8 @@ The server runs on `http://localhost:4848`.
 
 3. Access the API at `http://localhost:4848/generate_word?length_word={length}&difficulty={difficulty}`.
 
+For more information consult [PYTHON.md](PYTHON.md)
+
 ## Java Servlet
 
 The frontend is implemented using Java Servlets. It communicates with the Flask backend to generate Hangul words, retrieve Romanized versions, and log user attempts.
