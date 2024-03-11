@@ -86,7 +86,7 @@ More on [JAVA-SERVLET.md](JAVA-SERVLET.md)
 
 The web interface provides a user-friendly platform for users to interact with the Hangul learning application. It includes settings for difficulty levels, word length selection, and an interactive display for learning and testing.
 
-More in [HTML-CSS-JAVASCRIPT.md](HTML-CSS-JAVASCRIPT.md)
+More in [HTML-CSS-JS.md](HTML-CSS-JS.md)
 
 ### Usage
 
