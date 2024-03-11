@@ -17,36 +17,36 @@ This project is a Hangul learning application that helps users practice and enha
 
 ```plaintext
 .
-├── LICENSE
-├── README.md
-├── WEB-INF
-│   ├── README.md
+├── LICENSE --                     LICENSE
+├── README.md --                   README
+├── WEB-INF --                     WEB-INF
 │   ├── classes
-│   │   ├── HangulServlet.class
-│   │   └── word_logs.csv
+│   │   ├── HangulServlet.class -- Java servlet class file
+│   │   └── word_logs.csv --       Logs
 │   ├── lib
-│   │   └── servlet-api.jar
-│   └── web.xml
-├── bin
-│   └── HangulServlet.class
-├── hangulLearning.js
-├── index.jsp
-├── src
-│   ├── HangulServlet.java
-│   └── scripts
-│       ├── difficulty1.csv
-│       ├── difficulty2.csv
-│       ├── difficulty3.csv
-│       ├── difficulty4.csv
-│       ├── difficulty5.csv
-│       ├── hangul_syllables.csv
-│       └── wordgenerator.py
-└── styles.css
+│   │   └── servlet-api.jar --     Servlet api (you still need to link yours)
+│   └── web.xml --                 Servlet Mapping
+├── hangulLearning.js --           JavaScript
+├── index.jsp --                   Home page (index.jsp)
+├── src --                         Sources
+│   ├── HangulServlet.java --      Java Servlet source code
+│   └── scripts --                 python scripts
+│       ├── difficulty1.csv --     list of korean syllables
+│       ├── difficulty2.csv --     list of korean syllables
+│       ├── difficulty3.csv --     list of korean syllables
+│       ├── difficulty4.csv --     list of korean syllables
+│       ├── difficulty5.csv --     list of korean syllables
+│       └── wordgenerator.py --    Python word geverator API 
+├── styles.css --                  stylesheet
+└── .vscode --                     VS code directory
+    └── setting.json --            VS code settings file
 ```
 
-## Backend (Flask)
+## Python API (Flask)
 
-The backend is implemented in Python using Flask. It provides a RESTful API for generating Hangul words with specified difficulty levels and lengths. The server runs on `http://localhost:4848`.
+The python API is implemented in Python using Flask. This API is used for generating Hangul words with specified difficulty levels and lengths. 
+
+The server runs on `http://localhost:4848`.
 
 ### Installation and Usage
 
@@ -57,12 +57,12 @@ The backend is implemented in Python using Flask. It provides a RESTful API for 
 
 2. Run the Flask server:
    ```bash
-   python your_flask_app.py
+   python path/to/hangultrainer/src/sripts/wordgenerator.py
    ```
 
 3. Access the API at `http://localhost:4848/generate_word?length_word={length}&difficulty={difficulty}`.
 
-## Frontend (Java Servlet)
+## Java Servlet
 
 The frontend is implemented using Java Servlets. It communicates with the Flask backend to generate Hangul words, retrieve Romanized versions, and log user attempts.
 
@@ -72,11 +72,9 @@ The frontend is implemented using Java Servlets. It communicates with the Flask 
 
 ### Configuration
 
-1. Update the Flask API endpoint in `HangulServlet.java` to match your Flask server.
+1. Update the Flask API endpoint in `HangulServlet.java` to match your Flask server. (default: `http://localhost:4848`)
 
 2. Deploy the Servlet to your Servlet container.
-
-3. Access the app at `http://localhost:{your_servlet_port}/HangulServlet?length_slider={length}&difficulty={difficulty}`.
 
 ## Web Interface
 
@@ -84,13 +82,15 @@ The web interface provides a user-friendly platform for users to interact with t
 
 ### Usage
 
-1. Open `index.jsp` in a web browser.
+1. Access the app at `http://localhost:{your_servlet_port}/HangulServlet?length_slider={length}&difficulty={difficulty}`.
 
-2. Configure the settings using the provided controls.
+2. Configure the settings using the provided controls for length and difficulty. 
 
-3. Click the "Generate Word" button to generate a random Hangul word.
+3.  Choose your preferred theme with the button Dark/Light   
 
-4. Enter the Romanized word in the input field and click "Check" to verify your answer.
+4. Click the "Generate Word" button to generate a random Hangul word.
+
+5. Enter the Romanized translation in the input field and click "Check" to verify your answer. A pop-up will tell if the input is correct or incorrect.
 
 ## Logs
 
@@ -98,19 +98,14 @@ User attempts and generated words are logged in the `word_logs.csv` file located
 
 ## Version History
 
-- **Version 1.2:** Improved user interface, added dark mode, and enhanced error handling.
-- **Version 1.1:** Implemented word logging and Romanization features.
-- **Version 1.0:** Initial release with basic word generation functionality.
+- **Version 1.2:** Improved user interface, added dark and white mode, and enhanced overall graphical design.
+- **Version 1.1:** Implemented word logging and difficulty parameter.
+- **Version 1.0:** Initial release with the possibility to only set the lenght.
 
 ## Contributors
 
-- [Your Name](link_to_your_github_profile)
-- [Another Contributor](link_to_another_github_profile)
+- [Rolando Mignone](https://github.com/TheOwlSenpai)
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to customize this README according to your project details. Include screenshots, deployment instructions, and any additional information that enhances the documentation.
+This project is licensed under the GNU license v3. See the [LICENSE](LICENSE) file for details.
