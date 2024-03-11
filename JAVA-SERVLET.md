@@ -88,7 +88,7 @@ Servlet deployment involves placing the compiled `.class` file in the appropriat
 After deploying the servlet, Tomcat automatically recognizes and initializes it when the application is started. Servlet deployment is an essential step to make your servlet accessible through HTTP requests.
 
 ## Java Servlet Code Breakdown
-#### Package and Imports
+
 
 ```java
 import jakarta.servlet.*;
@@ -102,43 +102,33 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 ```
 
-- The `import` statements include necessary packages for servlet development.
+- These are import statements, bringing in necessary packages for servlet development.
 - `jakarta.servlet` and `jakarta.servlet.http` provide servlet and HTTP-related functionality.
 - `java.io` is used for input/output operations.
 - `java.net.URI` and `java.net.http` are used for making HTTP requests.
 - `java.time.LocalDateTime` and `java.time.format.DateTimeFormatter` are used for timestamp formatting.
 
-#### Class Definition
-
 ```java
 public class HangulServlet extends HttpServlet {
 ```
 
-- Defines the `HangulServlet` class, extending `HttpServlet` to create a servlet.
-
-#### `doGet` Method
+- This line declares the class `HangulServlet`, which extends `HttpServlet` to create a servlet.
 
 ```java
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Method implementation
-}
 ```
 
-- The `doGet` method handles HTTP GET requests.
+- The `doGet` method is an overridden method from the `HttpServlet` class, handling HTTP GET requests.
 - `HttpServletRequest` represents the request made by the client.
 - `HttpServletResponse` represents the response that the servlet sends to the client.
 - The method throws an `IOException` to handle potential I/O errors.
-
-#### Parsing User Input
 
 ```java
 int length = Integer.parseInt(request.getParameter("length_slider"));
 int difficulty = Integer.parseInt(request.getParameter("difficulty"));
 ```
 
-- Retrieves user input parameters (`length_slider` and `difficulty`) from the HTTP request.
-
-#### Making a Request to Flask
+- These lines parse user input parameters (`length_slider` and `difficulty`) from the HTTP request.
 
 ```java
 String flaskUrl = "http://localhost:4848/generate_word?length_word=" + length + "&difficulty=" + difficulty;
@@ -152,11 +142,11 @@ HttpRequest httpRequest = HttpRequest.newBuilder()
 - Creates an instance of `HttpClient` for making HTTP requests.
 - Builds an HTTP request with the constructed URL.
 
-#### Processing Flask Response
-
 ```java
 try {
     HttpResponse<String> httpResponse = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+    // Parse the JSON response from Flask
     String responseBody = httpResponse.body();
     String[] parts = responseBody.split("\"");
     String koreanWord = parts[3];
@@ -166,24 +156,16 @@ try {
 - Sends the HTTP request to the Flask backend.
 - Processes the Flask response by splitting the JSON and extracting the Korean and Romanized words.
 
-#### Constructing JSON Response
-
 ```java
 String jsonResponse = "{\"koreanWord\": \"" + koreanWord + "\", \"romanizedWord\": \"" + romanizedWord + "\"}";
-```
 
-- Constructs a JSON response containing the Korean and Romanized words.
-
-#### Setting Response Headers
-
-```java
+// Set response headers
 response.setContentType("application/json");
 response.setCharacterEncoding("UTF-8");
 ```
 
+- Constructs a JSON response containing the Korean and Romanized words.
 - Sets the response headers to specify that the response is in JSON format.
-
-#### Writing JSON to Output Stream
 
 ```java
 PrintWriter out = response.getWriter();
@@ -193,29 +175,53 @@ out.flush();
 
 - Gets the output stream and writes the JSON response to the client.
 
-#### Logging to CSV
-
 ```java
 logToCSV(length, difficulty);
 ```
 
 - Calls the `logToCSV` method to log generated words to a CSV file.
 
-#### Exception Handling
-
 ```java
 } catch (Exception e) {
-    // Exception handling
+    e.printStackTrace();
+    // Handle the exception by sending an error JSON response if needed
+    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+    PrintWriter out = response.getWriter();
+    out.print("{\"error\": \"" + e.getMessage() + "\"}");
+    out.flush();
 }
 ```
 
 - Catches and handles exceptions, printing the stack trace and sending an error response if needed.
 
-#### `logToCSV` Method
-
 ```java
 private void logToCSV(int length, int difficulty) {
-    // Method implementation
+    try {
+        // Get the current timestamp
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String timestamp = now.format(formatter);
+
+        // Append the log entry to the CSV file
+        String logEntry = length + "," + difficulty + "," + timestamp + "\n";
+        String csvFilePath = getServletContext().getRealPath("/") + "WEB-INF/classes/word_logs.csv";
+
+        try (FileWriter fileWriter = new FileWriter(csvFilePath, true);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+             PrintWriter writer = new PrintWriter(bufferedWriter)) {
+
+            writer.write(logEntry);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, you may want to log it or send an error response
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Handle the exception, you may want to log it or send an error response
+    }
 }
 ```
 
