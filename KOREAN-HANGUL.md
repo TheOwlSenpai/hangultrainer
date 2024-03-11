@@ -97,5 +97,3 @@ Suppose the generated Hangul word is "한" (han). Here's how you can provide a c
 
 5. **Feedback:**
    - If correct, the app will confirm your accuracy. If incorrect, the app will prompt you to try again.
-
-Learning Hangul becomes an enjoyable experience with the Hangul Learning App. Practice, Romanize, and reinforce your understanding of this unique writing system through interactive exercises.
