@@ -27,6 +27,9 @@ Hangul, the native alphabet of the Korean writing system, is renowned for its lo
 5. **Final Consonants:**
    - Final consonants, appearing at the bottom of a syllable block, modify pronunciation. There are 28 final consonants, including an empty consonant (no final consonant).
 
+![v4](https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/27342568-4e54-4d4b-9b3a-f4c00a935e34)
+
+
 ## Hangul Character Reference Table
 
 | Initial Consonants | Vowels (Including Double Vowels) | Final Consonants (Including Double Consonants) |
@@ -62,6 +65,8 @@ Hangul, the native alphabet of the Korean writing system, is renowned for its lo
 Note: 'ㅇ' don't have a reading if it's at a start of a word, it's mute, but it's read "ng" if it's at the end.
 
 ## Example: How to Give a Correct Answer
+
+![bc](https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/4c4cd6a2-f9de-4dc4-9a4e-9e82b7660411)
 
 Suppose the generated Hangul word is "빛" (bit). Here's how you can provide
 
