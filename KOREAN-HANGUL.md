@@ -73,6 +73,10 @@ Note: 'ㅇ' don't have a reading if it's at a start of a word, it's mute, but it
 - **Difficulty4:** All the simple triple characters (initial + vowel + final) combinations in hangul.
 - **Difficulty5:** All the possible characters hangul combinations in the hangul writing system,
 
+## Interface breakdown
+
+<img width="919" alt="Screenshot 2024-03-11 at 1 24 30 PM" src="https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/6509c66e-a958-4478-aa0d-550cad9c5584">
+
 ## Example: How to Give a Correct Answer
 
 ![bc](https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/4c4cd6a2-f9de-4dc4-9a4e-9e82b7660411)
