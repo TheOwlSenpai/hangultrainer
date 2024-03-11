@@ -68,7 +68,7 @@ Suppose the generated Hangul word is "빛" (bit). Here's how you can provide
  a correct Romanized answer:
 
 1. **Observation:**
-   - Identify the individual Hangul character, in this case: ㅂ (b) 'initial', ㅣ (i) 'vowel', ㅌ (t) 'final'.
+   - Identify the individual Hangul character, in this case: ㅂ 'initial', ㅣ 'vowel', ㅌ 'final'.
 
 2. **Romanization:**
    - Romanize each character: ㅂ (b) + ㅣ (i) + ㅌ (t) = "bit."
