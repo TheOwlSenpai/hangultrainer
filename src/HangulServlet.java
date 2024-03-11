@@ -9,9 +9,10 @@ import java.net.http.HttpResponse;
 public class HangulServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int length = Integer.parseInt(request.getParameter("length_slider"));
+        int difficulty = Integer.parseInt(request.getParameter("difficulty"));
 
         // Make a request to Flask app
-        String flaskUrl = "http://localhost:4848/generate_word?length_word=" + length;
+        String flaskUrl = "http://localhost:4848/generate_word?length_word=" + length + "&difficulty=" + difficulty;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(flaskUrl))

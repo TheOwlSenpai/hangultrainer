@@ -1,8 +1,16 @@
+// VERSION 1.2
+
 function generateWord() {
     var length = document.getElementById("length_slider").value;
+    var difficulty = document.querySelector('input[name="difficulty"]:checked').value;
 
-    // Make a request to the servlet with the selected length
-    var servletUrl = "HangulServlet?length_slider=" + length;
+    // Display difficulty and length
+    document.getElementById("radio_d").innerText = "Difficulty: " + difficulty + " | Length: " + length;
+
+    // + "&difficulty=" + difficulty;
+    // Make a request to the servlet with the selected length and difficulty
+    var servletUrl = "HangulServlet?length_slider=" + length + "&difficulty=" + difficulty; 
+
 
     // Example using fetch API
     fetch(servletUrl)
