@@ -13,6 +13,8 @@ This project is a Hangul learning application that helps users practice and enha
 - User-friendly web interface for an interactive learning experience.
 - Log generated words and user attempts for future analysis.
 
+More on [KOREAN-HANGUL.md](KOREAN-HANGUL.md)
+
 ## Project Structure
 
 ```plaintext
