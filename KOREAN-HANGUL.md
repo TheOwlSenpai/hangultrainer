@@ -1,6 +1,6 @@
 Certainly! Here's the updated user guide with the table included:
 
-# Hangul Learning App - User Guide
+# HangulTrainer - User Guide
 
 ## Introduction to Hangul
 
