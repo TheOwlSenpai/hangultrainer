@@ -1,10 +1,20 @@
 # Hangul Learning App
 
-<img width="919" alt="Screenshot 2024-03-11 at 1 24 30 PM" src="https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/726decdd-8352-413b-874e-0a68fa028190">
-
 ## Introduction
 
+<img width="919" alt="Screenshot 2024-03-11 at 1 24 30 PM" src="https://github.com/TheOwlSenpai/hangultrainer/assets/45239129/0cf1029e-9814-4e6e-9407-3b93c612b6af">
+
+*Correction: how the would -> how the word
+
 This project is a Hangul learning application that helps users practice and enhance their understanding of the Korean script. The app generates random Hangul words based on user-defined settings, providing an interactive learning experience. The application consists of a Flask backend for word generation and a Java Servlet frontend for handling user interactions.
+
+## Documentation
+
+- [README.md](README.md)
+- [USER-GUIDE.md](USER-GUIDE.md)
+- [PYTHON.md](PYTHON.md)
+- [JAVA-SERVLET.md](JAVA-SERVLET.md)
+- [HTML-CSS-JS.md](HTML-CSS-JS.md)
 
 ## Features
 
@@ -99,6 +109,8 @@ More in [HTML-CSS-JS.md](HTML-CSS-JS.md)
 4. Click the "Generate Word" button to generate a random Hangul word.
 
 5. Enter the Romanized translation in the input field and click "Check" to verify your answer. A pop-up will tell if the input is correct or incorrect.
+
+More in [USER-GUIDE.md](USER-GUIDE.md)
 
 ## Logs
 
