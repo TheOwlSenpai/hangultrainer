@@ -78,7 +78,7 @@ Note: 'ㅇ' don't have a reading if it's at a start of a word, it's mute, but it
 Suppose the generated Hangul word is "한" (han). Here's how you can provide a correct Romanized answer:
 
 1. **Observation:**
-   - Identify the individual Hangul characters: ㅎ (h), ㅏ (a), ㄴ (n).
+   - Identify the individual Hangul characters: ㅎ initial, ㅏ vowel, ㄴ final.
 
 2. **Romanization:**
    - Romanize each character: ㅎ (h) + ㅏ (a) + ㄴ (n) = "han."
