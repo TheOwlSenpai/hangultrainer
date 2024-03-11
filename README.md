@@ -29,9 +29,15 @@ More on [USER-GUIDE.md](USER-GUIDE.md)
 
 ```plaintext
 .
-├── LICENSE --                     LICENSE
-├── README.md --                   README
-├── WEB-INF --                     WEB-INF
+├── .vscode
+│   └── settings.json
+├── HTML-CSS-JS.md --              HTML-CSS-JS Doc
+├── JAVA-SERVLET.md --             JAVA-SERVLET Doc
+├── LICENSE
+├── PYTHON.md --                   PYTHON Doc
+├── README.md --                   READ-ME Doc
+├── USER-GUIDE.md --               USER-GUIDE Doc
+├── WEB-INF
 │   ├── classes
 │   │   ├── HangulServlet.class -- Java servlet class file
 │   │   └── word_logs.csv --       Logs
@@ -43,15 +49,17 @@ More on [USER-GUIDE.md](USER-GUIDE.md)
 ├── src --                         Sources
 │   ├── HangulServlet.java --      Java Servlet source code
 │   └── scripts --                 python scripts
+│       ├── .junk
+│       │   ├── generator.py
+│       │   ├── hangul_check.py
+│       │   └── word_generator.py
 │       ├── difficulty1.csv --     list of korean syllables
 │       ├── difficulty2.csv --     list of korean syllables
 │       ├── difficulty3.csv --     list of korean syllables
 │       ├── difficulty4.csv --     list of korean syllables
 │       ├── difficulty5.csv --     list of korean syllables
 │       └── wordgenerator.py --    Python word geverator API 
-├── styles.css --                  stylesheet
-└── .vscode --                     VS code directory
-    └── setting.json --            VS code settings file
+└── styles.css
 ```
 
 ## Python API (Flask)
