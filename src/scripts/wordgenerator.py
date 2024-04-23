@@ -64,4 +64,4 @@ def generate_word_api():
     return jsonify({'korean_word': random_korean_word, 'romanized_word': romanized_korean_word})
 
 if __name__ == "__main__":
-    app.run(port=4848)
+    app.run(host='0.0.0.0', port=8888)

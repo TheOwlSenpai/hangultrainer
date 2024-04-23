@@ -9,7 +9,7 @@ function generateWord() {
 
     // + "&difficulty=" + difficulty;
     // Make a request to the servlet with the selected length and difficulty
-    var servletUrl = "HangulServlet?length_slider=" + length + "&difficulty=" + difficulty; 
+    var servletUrl = "http://theowlsenpai.webredirect.org:8888/generate_word?length_word=" + length + "&difficulty=" + difficulty; 
 
 
     // Example using fetch API
