@@ -152,11 +152,71 @@ label[for="romanizedInput"] {
     font-size: 1.2em;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
     width: 60%;
     padding: 10px;
     margin: 10px 0;
     font-size: 1em;
+    border-radius: 10px; /* Added for rounded corners */
 }
 
-/* Add more styles as needed */
+form {
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+form input[type="text"], form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1em;
+    border-radius: 10px; /* Added for rounded corners */
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-bg-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button[type="submit"] {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+form button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+label[for="languageSelect"] {
+    display: block;
+    margin-top: 10px;
+    color: #ccc;
+    font-size: 1.2em;
+}
+
+select {
+    width: 35%;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px; /* Rounded corners */
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--radio-border-color);
+}

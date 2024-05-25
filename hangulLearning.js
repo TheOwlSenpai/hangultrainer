@@ -1,4 +1,27 @@
-// VERSION 1.2
+// Add this at the beginning of your JavaScript file
+window.onload = function() {
+    fetch('check_session.php')
+    .then(response => response.json())
+    .then(data => {
+        if (!data.logged_in) {
+            window.location.href = 'login.php'; // Redirect to login page if not logged in
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Add an event listener for the theme toggle button
+document.getElementById('theme-toggle-btn').addEventListener('click', toggleTheme);
+
+function toggleTheme() {
+    const body = document.body;
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+
+    body.classList.toggle('light');
+
+    const isLightTheme = body.classList.contains('light');
+    themeToggleBtn.innerHTML = isLightTheme ? '<i class="moon-icon" color="#333">Dark</i>' : '<i class="sun-icon">Light</i>';
+}
 
 function generateWord() {
     var length = document.getElementById("length_slider").value;
@@ -7,10 +30,8 @@ function generateWord() {
     // Display difficulty and length
     document.getElementById("radio_d").innerText = "Difficulty: " + difficulty + " | Length: " + length;
 
-    // + "&difficulty=" + difficulty;
     // Make a request to the servlet with the selected length and difficulty
-    var servletUrl = "http://theowlsenpai.webredirect.org:8888/generate_word?length_word=" + length + "&difficulty=" + difficulty; 
-
+    var servletUrl = "http:/localhost:8888/generate_word?length_word=" + length + "&difficulty=" + difficulty; 
 
     // Example using fetch API
     fetch(servletUrl)

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyrillic Learning App</title>
+    <script src="cyrillicLearning.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="body">
+        <div class="title-theme">
+            <h1>Cyrillic Learning App</h1>
+            <button class="moon-sun" id="theme-toggle-btn">
+                <i class="sun-icon">Light</i>
+            </button>
+            <form action="logout.php" method="post" style="display:inline;">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+        <div class="fieldset">
+            <div class="legend">Settings</div>
+            <label for="languageSelect">Choose a language:</label>
+            <select id="languageSelect">
+                <option value="Bulgarian">Bulgarian🇧🇬</option>
+                <option value="Russian">Russian🇷🇺</option>
+                <option value="Ukrainian">Ukrainian🇺🇦</option>
+            </select>
+            <label for="length_slider">Choose Word Length (1-10):</label>
+            <input type="range" min="1" max="5" value="3" id="length_slider">
+            <button onclick="generateCyrillicWord()">Generate Word</button>
+        </div>
+        <div id="wordDisplay" style="display:none;" class="body">
+            <p id="cyrillicWord"></p>
+            <label for="romanizedInput">Enter Romanized Word:</label>
+            <input type="text" id="romanizedInput">
+            <button onclick="checkCyrillicWord()">Check</button>
+        </div>
+    </div>
+</body>
+</html>

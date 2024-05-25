@@ -1,9 +1,0 @@
-{
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "WEB-INF/classes",
-    "java.project.referencedLibraries": [
-        "WEB-INF/lib/*.jar",
-        "WEB-INF/lib/servlet-api.jar",
-        "/opt/homebrew/Cellar/tomcat/10.1.19/libexec/lib/servlet-api.jar"
-    ]
-}
