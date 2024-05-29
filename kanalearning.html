@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Learning App</title>
+    <script src="kanalearning.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="body">
+        <div class="title-theme">
+            <div class="title-theme2">
+                <h1>Cyrillic Learning App</h1>
+                <button class="moon-sun" id="theme-toggle-btn">
+                    <i class="sun-icon">Light</i>
+                </button>
+            </div>
+                <form action="logout.php" method="post" style="display: flex;">
+                    <button type="submit">Logout</button>
+                </form>
+        </div>
+
+        <div class="fieldset">
+            <div class="legend">Settings</div>
+            <label for="typeSelect">Choose a writing system:</label>
+            <select class="drop-down-selection" id="typeSelect">
+                <option value="hiragana">Hiragana - あ</option>
+                <option value="katakana">Katakana - ア</option>
+            </select>
+
+            <label for="difficultyRadio">Choose a difficulty:</label>
+            <div class="radio" id="difficultyRadio">
+                <label>
+                    <input type="radio" value="1" name="difficulty" id="difficulty1"><span>1</span>
+                </label>
+                <label>
+                    <input type="radio" value="2" name="difficulty" id="difficulty2"><span>2</span>
+                </label>
+                <label>
+                    <input type="radio" value="3" name="difficulty" id="difficulty3"><span>3</span>
+                </label>
+                <label>
+                    <input type="radio" value="4" name="difficulty" id="difficulty4" checked><span>4</span>
+                </label>
+                <label>
+                    <input type="radio" value="5" name="difficulty" id="difficulty5"><span>5</span>
+                </label>
+            </div>
+
+            <label for="length_slider">Choose Word Length (1-10):</label>
+            <input type="range" min="1" max="10" value="5" id="length_slider">
+            <button onclick="generateJapaneseWord()">Generate Word</button>
+            <button id="cheatsheet-toggle-btn">Cheatsheet</button>
+        </div>
+        <div id="wordDisplay" style="display:none;" class="body">
+            <p id="japaneseWord"></p>
+            <label for="romanizedInput">Enter Romanized Word:</label>
+            <input type="text" id="romanizedInput">
+            <button onclick="checkJapaneseWord()">Check</button>
+        </div>
+    </div>
+
+    <div id="cheatsheet-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="tabs">
+                <button class="tablinks active" onclick="openTab(event, 'Hiragana')">Hiragana</button>
+                <button class="tablinks" onclick="openTab(event, 'Katakana')">Katakana</button>
+            </div>
+            <div id="Hiragana" class="tabcontent active">
+                <h3>Hiragana Cheatsheet</h3>
+                <table>
+                    <tr>
+                        <td><b>あ</b><br>a</td>
+                        <td><b>い</b><br>i</td>
+                        <td><b>う</b><br>u</td>
+                        <td><b>え</b><br>e</td>
+                        <td><b>お</b><br>o</td>
+                    </tr>
+                    <tr>
+                        <td><b>か</b><br>ka</td>
+                        <td><b>き</b><br>ki</td>
+                        <td><b>く</b><br>ku</td>
+                        <td><b>け</b><br>ke</td>
+                        <td><b>こ</b><br>ko</td>
+                    </tr>
+                    <tr>
+                        <td><b>さ</b><br>sa</td>
+                        <td><b>し</b><br>shi</td>
+                        <td><b>す</b><br>su</td>
+                        <td><b>せ</b><br>se</td>
+                        <td><b>そ</b><br>so</td>
+                    </tr>
+                    <tr>
+                        <td><b>た</b><br>ta</td>
+                        <td><b>ち</b><br>chi</td>
+                        <td><b>つ</b><br>tsu</td>
+                        <td><b>て</b><br>te</td>
+                        <td><b>と</b><br>to</td>
+                    </tr>
+                    <tr>
+                        <td><b>な</b><br>na</td>
+                        <td><b>に</b><br>ni</td>
+                        <td><b>ぬ</b><br>nu</td>
+                        <td><b>ね</b><br>ne</td>
+                        <td><b>の</b><br>no</td>
+                    </tr>
+                    <tr>
+                        <td><b>は</b><br>ha</td>
+                        <td><b>ひ</b><br>hi</td>
+                        <td><b>ふ</b><br>fu</td>
+                        <td><b>へ</b><br>he</td>
+                        <td><b>ほ</b><br>ho</td>
+                    </tr>
+                    <tr>
+                        <td><b>ま</b><br>ma</td>
+                        <td><b>み</b><br>mi</td>
+                        <td><b>む</b><br>mu</td>
+                        <td><b>め</b><br>me</td>
+                        <td><b>も</b><br>mo</td>
+                    </tr>
+                    <tr>
+                        <td><b>や</b><br>ya</td>
+                        <td></td>
+                        <td><b>ゆ</b><br>yu</td>
+                        <td></td>
+                        <td><b>よ</b><br>yo</td>
+                    </tr>
+                    <tr>
+                        <td><b>ら</b><br>ra</td>
+                        <td><b>り</b><br>ri</td>
+                        <td><b>る</b><br>ru</td>
+                        <td><b>れ</b><br>re</td>
+                        <td><b>ろ</b><br>ro</td>
+                    </tr>
+                    <tr>
+                        <td><b>わ</b><br>wa</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>を</b><br>wo</td>
+                    </tr>
+                    <tr>
+                        <td><b>ん</b><br>n</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="Katakana" class="tabcontent">
+                <h3>Katakana Cheatsheet</h3>
+                <table>
+                    <tr>
+                        <td><b>ア</b><br>a</td>
+                        <td><b>イ</b><br>i</td>
+                        <td><b>ウ</b><br>u</td>
+                        <td><b>エ</b><br>e</td>
+                        <td><b>オ</b><br>o</td>
+                    </tr>
+                    <tr>
+                        <td><b>カ</b><br>ka</td>
+                        <td><b>キ</b><br>ki</td>
+                        <td><b>ク</b><br>ku</td>
+                        <td><b>ケ</b><br>ke</td>
+                        <td><b>コ</b><br>ko</td>
+                    </tr>
+                    <tr>
+                        <td><b>サ</b><br>sa</td>
+                        <td><b>シ</b><br>shi</td>
+                        <td><b>ス</b><br>su</td>
+                        <td><b>セ</b><br>se</td>
+                        <td><b>ソ</b><br>so</td>
+                    </tr>
+                    <tr>
+                        <td><b>タ</b><br>ta</td>
+                        <td><b>チ</b><br>chi</td>
+                        <td><b>ツ</b><br>tsu</td>
+                        <td><b>テ</b><br>te</td>
+                        <td><b>ト</b><br>to</td>
+                    </tr>
+                    <tr>
+                        <td><b>ナ</b><br>na</td>
+                        <td><b>ニ</b><br>ni</td>
+                        <td><b>ヌ</b><br>nu</td>
+                        <td><b>ネ</b><br>ne</td>
+                        <td><b>ノ</b><br>no</td>
+                    </tr>
+                    <tr>
+                        <td><b>ハ</b><br>ha</td>
+                        <td><b>ヒ</b><br>hi</td>
+                        <td><b>フ</b><br>fu</td>
+                        <td><b>ヘ</b><br>he</td>
+                        <td><b>ホ</b><br>ho</td>
+                    </tr>
+                    <tr>
+                        <td><b>マ</b><br>ma</td>
+                        <td><b>ミ</b><br>mi</td>
+                        <td><b>ム</b><br>mu</td>
+                        <td><b>メ</b><br>me</td>
+                        <td><b>モ</b><br>mo</td>
+                    </tr>
+                    <tr>
+                        <td><b>ヤ</b><br>ya</td>
+                        <td></td>
+                        <td><b>ユ</b><br>yu</td>
+                        <td></td>
+                        <td><b>ヨ</b><br>yo</td>
+                    </tr>
+                    <tr>
+                        <td><b>ラ</b><br>ra</td>
+                        <td><b>リ</b><br>ri</td>
+                        <td><b>ル</b><br>ru</td>
+                        <td><b>レ</b><br>re</td>
+                        <td><b>ロ</b><br>ro</td>
+                    </tr>
+                    <tr>
+                        <td><b>ワ</b><br>wa</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>ヲ</b><br>wo</td>
+                    </tr>
+                    <tr>
+                        <td><b>ン</b><br>n</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

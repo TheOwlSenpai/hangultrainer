@@ -1,4 +1,3 @@
-// Add an event listener for the theme toggle button
 document.getElementById('theme-toggle-btn').addEventListener('click', toggleTheme);
 
 function toggleTheme() {
@@ -11,37 +10,34 @@ function toggleTheme() {
     themeToggleBtn.innerHTML = isLightTheme ? '<i class="moon-icon" color="#333">Dark</i>' : '<i class="sun-icon">Light</i>';
 }
 
-function generateCyrillicWord() {
+function generateJapaneseWord() {
+    let selectType = document.getElementById('typeSelect');
+    let selectedType = selectType.value;
+    let difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     let length = document.getElementById("length_slider").value;
-    let selectElement = document.getElementById('languageSelect');
-    let selectedLanguage = selectElement.value;
 
-    // AJAX request to PHP script to generate Cyrillic word
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "generate_cyrillicword.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.open('POST', 'kanalearning.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 let response = JSON.parse(xhr.responseText);
-                document.getElementById("cyrillicWord").innerText = "Cyrillic Word: " + response.cyrillicWord;
+                document.getElementById("japaneseWord").innerText = "Kana Word: " + response.japaneseWord;
                 document.getElementById("wordDisplay").style.display = "block";
-                // Store the correct romanized word in a data attribute
                 document.getElementById("wordDisplay").setAttribute("data-correct-romanized", response.romanizedWord);
             } else {
                 console.error('Error:', xhr.statusText);
             }
         }
     };
-    xhr.send("length=" + length + "&language=" + selectedLanguage);
+    xhr.send("type=" + encodeURIComponent(selectedType) + "&difficulty=" + encodeURIComponent(difficulty) + "&length=" + encodeURIComponent(length));
 }
 
-function checkCyrillicWord() {
+function checkJapaneseWord() {
     let userInput = document.getElementById("romanizedInput").value;
     let correctRomanizedWord = document.getElementById("wordDisplay").getAttribute("data-correct-romanized");
 
-    // Compare user input with the correct Romanized word
-    // For simplicity, you can do a case-insensitive comparison
     if (userInput.toLowerCase() === correctRomanizedWord.toLowerCase()) {
         alert("Correct!");
     } else {
@@ -49,9 +45,10 @@ function checkCyrillicWord() {
     }
 }
 
+// cheatsheet
 document.getElementById('cheatsheet-toggle-btn').addEventListener('click', function() {
     document.getElementById('cheatsheet-modal').style.display = 'block';
-    openTab(null, 'Russian'); // Open Hiragana tab by default
+    openTab(null, 'Hiragana'); // Open Hiragana tab by default
 });
 
 document.querySelector('.close-btn').addEventListener('click', function() {

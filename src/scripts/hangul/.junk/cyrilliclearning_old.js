@@ -11,63 +11,44 @@ function toggleTheme() {
     themeToggleBtn.innerHTML = isLightTheme ? '<i class="moon-icon" color="#333">Dark</i>' : '<i class="sun-icon">Light</i>';
 }
 
-let syllableData = {
-    Bulgarian: [],
-    Russian: [],
-    Ukrainian: []
-};
-
-// Show loading indicator
-document.getElementById('loadingIndicator').style.display = 'block';
-
-// Load CSV data
-function loadCSVData(language) {
-    return fetch(`${language}_combinations.csv`)
-        .then(response => response.text())
-        .then(data => {
-            let parsedData = PapaParse.parse(data, { header: true }).data;
-            syllableData[language] = parsedData;
-        });
-}
-
-// Load all languages data
-Promise.all([
-    loadCSVData('Bulgarian'),
-    loadCSVData('Russian'),
-    loadCSVData('Ukrainian')
-]).then(() => {
-    console.log('All CSV data loaded');
-    document.getElementById('loadingIndicator').style.display = 'none';
-    document.getElementById('generateBtn').disabled = false;
-}).catch(error => {
-    console.error('Error loading CSV data:', error);
-});
-
 function generateCyrillicWord() {
     let length = document.getElementById("length_slider").value;
     let selectElement = document.getElementById('languageSelect');
     let selectedLanguage = selectElement.value;
 
-    let languageData = syllableData[selectedLanguage];
+    // Define the syllables arrays
+    let russianSyllables = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ы', 'Э', 'Ю', 'Я'];
+    let romanizedRussian = ['a', 'b', 'v', 'g', 'd', 'e', 'yo', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'kh', 'ts', 'ch', 'sh', 'shch', 'eu', 'e', 'yu', 'ya'];
 
-    if (languageData.length === 0) {
-        alert('CSV data not loaded yet. Please try again.');
-        return;
+    let ukrainianSyllables = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Є', 'Ж', 'З', 'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ю', 'Я'];
+    let romanizedUkrainian = ['a', 'b', 'v', 'h', 'd', 'e', 'ye', 'zh', 'z', 'i', 'i', 'yi', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'kh', 'ts', 'ch', 'sh', 'shch', 'yu', 'ya'];
+
+    let bulgarianSyllables = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ю', 'Я'];
+    let romanizedBulgarian = ['a', 'b', 'v', 'g', 'd', 'e', 'zh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'sht', 'a', 'yu', 'ya'];
+
+    // Variables to hold the selected syllables
+    let cyrillicSyllables, romanizedSyllables;
+
+    // Select the appropriate syllables based on the selected language
+    if (selectedLanguage == "Bulgarian") {
+        cyrillicSyllables = bulgarianSyllables;
+        romanizedSyllables = romanizedBulgarian; 
+    } else if (selectedLanguage == "Russian") {
+        cyrillicSyllables = russianSyllables;
+        romanizedSyllables = romanizedRussian;
+    } else if (selectedLanguage == "Ukrainian") {
+        cyrillicSyllables = ukrainianSyllables;
+        romanizedSyllables = romanizedUkrainian;
     }
 
-    let selectedWords = [];
-    for (let i = 0; i < length; i++) {
-        let randomIndex = Math.floor(Math.random() * languageData.length);
-        selectedWords.push(languageData[randomIndex]);
-    }
-
-    // Generate the word and its romanized equivalent
+    // Generate random Cyrillic word and its romanized equivalent
     let word = '';
     let romanizedWord = '';
-    selectedWords.forEach(item => {
-        word += item.cyrillic;
-        romanizedWord += item.romanized;
-    });
+    for (let i = 0; i < length; i++) {
+        let randomIndex = Math.floor(Math.random() * cyrillicSyllables.length);
+        word += cyrillicSyllables[randomIndex];
+        romanizedWord += romanizedSyllables[randomIndex];
+    }
 
     // Display the Cyrillic word
     document.getElementById("cyrillicWord").innerText = "Cyrillic Word: " + word;
@@ -82,6 +63,7 @@ function checkCyrillicWord() {
     let correctRomanizedWord = document.getElementById("wordDisplay").getAttribute("data-correct-romanized");
 
     // Compare user input with the correct Romanized word
+    // For simplicity, you can do a case-insensitive comparison
     if (userInput.toLowerCase() === correctRomanizedWord.toLowerCase()) {
         alert("Correct!");
     } else {

@@ -44,12 +44,9 @@ h1 {
 #theme-toggle-btn {
     background: none;
     border: none;
-    padding: 2px;
-    margin: auto;
     cursor: pointer;
     display: flex;
     align-items: center;
-    min-width: 90px;
 }
 
 .moon-sun {
@@ -212,6 +209,7 @@ form button:hover {
 }
 
 select {
+    width: 35%;
     margin: 0 auto;
     display: block;
     padding: 10px;
@@ -220,7 +218,6 @@ select {
     background-color: var(--secondary-bg-color);
     color: var(--text-color);
     border: 1px solid var(--radio-border-color);
-    min-width: 80px;
 }
 
 
@@ -326,74 +323,4 @@ th {
     display: block;
     font-size: 1.5em;
     margin-bottom: 5px;
-}
-
-.title-theme2 {
-    display: flex;
-    flex-direction: row;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 700px) {
-    .title-theme {
-        flex-direction: column;
-    }
-
-    .title-theme h1 {
-        margin-bottom: 10px;
-    }
-
-    .title-theme2 {
-        flex-direction: row-reverse;
-    }
-
-    button {
-        width: 80%;
-        height: auto;
-    }
-
-    input[type="text"], input[type="password"], select {
-        width: 80%;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5em;
-    }
-
-    .title-theme {
-        padding: 5px;
-    }
-
-    .title-theme h1 {
-        font-size: 1.2em;
-    }
-
-    div.body {
-        padding: 20px 2%;
-    }
-
-    form {
-        width: 90%;
-        padding: 10px;
-    }
-
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-    }
-
-    .tablinks {
-        padding: 5px 10px;
-        font-size: 14px;
-    }
-
-    table, th, td {
-        font-size: 12px;
-    }
-
-    .tabcontent table td {
-        font-size: 1em;
-    }
 }

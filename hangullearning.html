@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangul Learning App</title>
-    <script src="hangulLearning.js" defer></script>
+    <script src="hangullearning.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="body">
         <div class="title-theme">
-            <h1>Hangul Learning App</h1>
-            <button class="moon-sun" id="theme-toggle-btn">
-                <i class="sun-icon">Light</i>
-            </button>
-            <form action="logout.php" method="post" style="display:inline;">
-                <button type="submit">Logout</button>
-            </form>
+            <div class="title-theme2">
+                <h1>Cyrillic Learning App</h1>
+                <button class="moon-sun" id="theme-toggle-btn">
+                    <i class="sun-icon">Light</i>
+                </button>
+            </div>
+                <form action="logout.php" method="post" style="display: flex;">
+                    <button type="submit">Logout</button>
+                </form>
         </div>
         
         <div class="fieldset">
             <div class="legend">Settings</div>
+
+            <label for="difficultyRadio">Choose a difficulty:</label>
             <div class="radio">
                 <label>
                     <input type="radio" value="1" name="difficulty" id="difficulty1"><span>1</span>
@@ -39,17 +43,19 @@
                     <input type="radio" value="5" name="difficulty" id="difficulty5"><span>5</span>
                 </label>
             </div>
+            
             <label for="length_slider">Choose Word Length (1-10):</label>
             <input type="range" min="1" max="10" value="5" id="length_slider">
             <button onclick="generateWord()">Generate Word</button>
         </div>
-    </div>
-    <div id="wordDisplay" style="display:none;" class="body">
-        <p id="radio_d"></p>
-        <p id="hangulWord"></p>
-        <label for="romanizedInput">Enter Romanized Word:</label>
-        <input type="text" id="romanizedInput">
-        <button onclick="checkWord()">Check</button>
+
+        <div id="wordDisplay" style="display:none;" class="body">
+            <p id="radio_d"></p>
+            <p id="hangulWord"></p>
+            <label for="romanizedInput">Enter Romanized Word:</label>
+            <input type="text" id="romanizedInput">
+            <button onclick="checkWord()">Check</button>
+        </div>
     </div>
 </body>
 </html>

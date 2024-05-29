@@ -11,32 +11,31 @@ function toggleTheme() {
     themeToggleBtn.innerHTML = isLightTheme ? '<i class="moon-icon" color="#333">Dark</i>' : '<i class="sun-icon">Light</i>';
 }
 
-function generateWord() {
+function generateGreekWord() {
     let length = document.getElementById("length_slider").value;
-    let difficulty = document.querySelector('input[name="difficulty"]:checked').value;
 
-    // Send an AJAX request to the PHP script
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `hangullearning.php?difficulty=${difficulty}&length=${length}`, true);
-    xhr.onload = function () {
-        if (this.status === 200) {
-            let response = JSON.parse(this.responseText);
-            document.getElementById("hangulWord").innerText = "Hangul Word: " + response.word;
-            document.getElementById("wordDisplay").style.display = "block";
-
-            // Store the correct romanized word in a data attribute
-            document.getElementById("wordDisplay").setAttribute("data-correct-romanized", response.romanized);
+    xhr.open("POST", "greeklearning.php", true);  // Ensure to specify the correct endpoint URL
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");  // Change to URL encoded for form data
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                document.getElementById("greekWord").innerText = "Greek Word: " + response.greekWord;
+                document.getElementById("wordDisplay").style.display = "block";
+                document.getElementById("wordDisplay").setAttribute("data-correct-romanized", response.romanizedWord);
+            } else {
+                console.error('Error:', xhr.statusText);
+            }
         }
     };
-    xhr.send();
+    xhr.send("length=" + length);
 }
 
-function checkWord() {
+function checkGreekWord() {  // Corrected function name to match context
     let userInput = document.getElementById("romanizedInput").value;
     let correctRomanizedWord = document.getElementById("wordDisplay").getAttribute("data-correct-romanized");
 
-    // Compare user input with the correct Romanized word
-    // For simplicity, you can do a case-insensitive comparison
     if (userInput.toLowerCase() === correctRomanizedWord.toLowerCase()) {
         alert("Correct!");
     } else {

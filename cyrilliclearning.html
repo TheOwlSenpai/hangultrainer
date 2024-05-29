@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyrillic Learning App</title>
-    <script src="cyrillicLearning.js" defer></script>
+    <script src="cyrilliclearning.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="body">
         <div class="title-theme">
-            <h1>Cyrillic Learning App</h1>
-            <button class="moon-sun" id="theme-toggle-btn">
-                <i class="sun-icon">Light</i>
-            </button>
-            <form action="logout.php" method="post" style="display:inline;">
-                <button type="submit">Logout</button>
-            </form>
+            <div class="title-theme2">
+                <h1>Cyrillic Learning App</h1>
+                <button class="moon-sun" id="theme-toggle-btn">
+                    <i class="sun-icon">Light</i>
+                </button>
+            </div>
+                <form action="logout.php" method="post" style="display: flex;">
+                    <button type="submit">Logout</button>
+                </form>
         </div>
         <div class="fieldset">
             <div class="legend">Settings</div>
@@ -28,7 +30,10 @@
             </select>
             <label for="length_slider">Choose Word Length (1-10):</label>
             <input type="range" min="1" max="5" value="3" id="length_slider">
-            <button onclick="generateCyrillicWord()">Generate Word</button>
+            <div class="buttons">
+                <button onclick="generateCyrillicWord()">Generate Word</button>
+                <button id="cheatsheet-toggle-btn">Cheatsheet</button>
+            </div>
         </div>
         <div id="wordDisplay" style="display:none;" class="body">
             <p id="cyrillicWord"></p>
@@ -37,5 +42,173 @@
             <button onclick="checkCyrillicWord()">Check</button>
         </div>
     </div>
+
+    <div id="cheatsheet-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="tabs">
+                <button class="tablinks active" onclick="openTab(event, 'Bulgarian')">Bulgarian</button>
+                <button class="tablinks" onclick="openTab(event, 'Ukrainian')">Ukrainian</button>
+                <button class="tablinks" onclick="openTab(event, 'Russian')">Russian</button>
+            </div>
+            <div id="Bulgarian" class="tabcontent active">
+                <h3>Bulgarian Cheatsheet</h3>
+                <table>
+                    <tr>
+                        <td><b>А</b><br>a</td>
+                        <td><b>Б</b><br>b</td>
+                        <td><b>В</b><br>v</td>
+                        <td><b>Г</b><br>g</td>
+                        <td><b>Д</b><br>d</td>
+                    </tr>
+                    <tr>
+                        <td><b>Е</b><br>e</td>
+                        <td><b>Ж</b><br>zh</td>
+                        <td><b>З</b><br>z</td>
+                        <td><b>И</b><br>i</td>
+                        <td><b>Й</b><br>y</td>
+                    </tr>
+                    <tr>
+                        <td><b>К</b><br>k</td>
+                        <td><b>Л</b><br>l</td>
+                        <td><b>М</b><br>m</td>
+                        <td><b>Н</b><br>n</td>
+                        <td><b>О</b><br>o</td>
+                    </tr>
+                    <tr>
+                        <td><b>П</b><br>p</td>
+                        <td><b>Р</b><br>r</td>
+                        <td><b>С</b><br>s</td>
+                        <td><b>Т</b><br>t</td>
+                        <td><b>У</b><br>u</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ф</b><br>f</td>
+                        <td><b>Х</b><br>h</td>
+                        <td><b>Ц</b><br>ts</td>
+                        <td><b>Ч</b><br>ch</td>
+                        <td><b>Ш</b><br>sh</td>
+                    </tr>
+                    <tr>
+                        <td><b>Щ</b><br>sht</td>
+                        <td><b>Ъ</b><br>a</td>
+                        <td><b>Ю</b><br>yu</td>
+                        <td><b>Я</b><br>ya</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="Ukrainian" class="tabcontent">
+                <h3>Ukrainian Cheatsheet</h3>
+                <table>
+                    <tr>
+                        <td><b>А</b><br>a</td>
+                        <td><b>Б</b><br>b</td>
+                        <td><b>В</b><br>v</td>
+                        <td><b>Г</b><br>h</td>
+                        <td><b>Ґ</b><br>g</td>
+                    </tr>
+                    <tr>
+                        <td><b>Д</b><br>d</td>
+                        <td><b>Е</b><br>e</td>
+                        <td><b>Є</b><br>ye</td>
+                        <td><b>Ж</b><br>zh</td>
+                        <td><b>З</b><br>z</td>
+                    </tr>
+                    <tr>
+                        <td><b>И</b><br>i</td>
+                        <td><b>І</b><br>i</td>
+                        <td><b>Ї</b><br>yi</td>
+                        <td><b>Й</b><br>y</td>
+                        <td><b>К</b><br>k</td>
+                    </tr>
+                    <tr>
+                        <td><b>Л</b><br>l</td>
+                        <td><b>М</b><br>m</td>
+                        <td><b>Н</b><br>n</td>
+                        <td><b>О</b><br>o</td>
+                        <td><b>П</b><br>p</td>
+                    </tr>
+                    <tr>
+                        <td><b>Р</b><br>r</td>
+                        <td><b>С</b><br>s</td>
+                        <td><b>Т</b><br>t</td>
+                        <td><b>У</b><br>u</td>
+                        <td><b>Ф</b><br>f</td>
+                    </tr>
+                    <tr>
+                        <td><b>Х</b><br>kh</td>
+                        <td><b>Ц</b><br>ts</td>
+                        <td><b>Ч</b><br>ch</td>
+                        <td><b>Ш</b><br>sh</td>
+                        <td><b>Щ</b><br>shch</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ю</b><br>yu</td>
+                        <td><b>Я</b><br>ya</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="Russian" class="tabcontent">
+                <h3>Russian Cheatsheet</h3>
+                <table>
+                    <tr>
+                        <td><b>А</b><br>a</td>
+                        <td><b>Б</b><br>b</td>
+                        <td><b>В</b><br>v</td>
+                        <td><b>Г</b><br>g</td>
+                        <td><b>Д</b><br>d</td>
+                    </tr>
+                    <tr>
+                        <td><b>Е</b><br>e</td>
+                        <td><b>Ё</b><br>yo</td>
+                        <td><b>Ж</b><br>zh</td>
+                        <td><b>З</b><br>z</td>
+                        <td><b>И</b><br>i</td>
+                    </tr>
+                    <tr>
+                        <td><b>Й</b><br>y</td>
+                        <td><b>К</b><br>k</td>
+                        <td><b>Л</b><br>l</td>
+                        <td><b>М</b><br>m</td>
+                        <td><b>Н</b><br>n</td>
+                    </tr>
+                    <tr>
+                        <td><b>О</b><br>o</td>
+                        <td><b>П</b><br>p</td>
+                        <td><b>Р</b><br>r</td>
+                        <td><b>С</b><br>s</td>
+                        <td><b>Т</b><br>t</td>
+                    </tr>
+                    <tr>
+                        <td><b>У</b><br>u</td>
+                        <td><b>Ф</b><br>f</td>
+                        <td><b>Х</b><br>kh</td>
+                        <td><b>Ц</b><br>ts</td>
+                        <td><b>Ч</b><br>ch</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ш</b><br>sh</td>
+                        <td><b>Щ</b><br>shch</td>
+                        <td><b>Ы</b><br>eu</td>
+                        <td><b>Э</b><br>e</td>
+                        <td><b>Ю</b><br>yu</td>
+                    </tr>
+                    <tr>
+                        <td><b>Я</b><br>ya</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>
