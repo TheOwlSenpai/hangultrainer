@@ -1,3 +1,14 @@
+window.onload = function() {
+    fetch('check_session.php')
+    .then(response => response.json())
+    .then(data => {
+        if (!data.logged_in) {
+            window.location.href = 'login.php'; // Redirect to login page if not logged in
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
 // Add an event listener for the theme toggle button
 document.getElementById('theme-toggle-btn').addEventListener('click', toggleTheme);
 
